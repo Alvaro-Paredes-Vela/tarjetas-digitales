@@ -407,16 +407,21 @@ button {
    ========================================================== */
 
 .public-card-page {
-  min-height: 100vh;
+  height: 100dvh;
+  height: 100svh; /* fallback progresivo, se sobrescribe si el navegador lo soporta */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 16px;
+  padding: clamp(6px, 2vh, 16px);
+  overflow: hidden;
 }
 
 .public-card-page .card {
   width: 100%;
   max-width: 380px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
   background: var(--cream);
   border-radius: 20px;
   overflow: hidden;
@@ -425,8 +430,9 @@ button {
 }
 
 .public-card-page .banner {
+  flex-shrink: 0;
   background: var(--color-primario, var(--forest-dark));
-  padding: 20px 22px;
+  padding: clamp(10px, 2.5vh, 20px) 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -434,13 +440,13 @@ button {
 
 .public-card-page .banner.has-logo {
   background: #ffffff;
-  padding: 22px 20px;
+  padding: clamp(10px, 2.5vh, 22px) 20px;
 }
 
 .public-card-page .banner .logo {
   width: 100%;
   height: auto;
-  max-height: 130px;
+  max-height: clamp(50px, 12vh, 130px);
   object-fit: contain;
   display: block;
 }
@@ -454,14 +460,15 @@ button {
 }
 
 .public-card-page .photo-wrap {
-  margin: -46px 24px 0;
+  flex-shrink: 0;
+  margin: clamp(-36px, -6vh, -20px) 24px 0;
   position: relative;
   z-index: 2;
 }
 
 .public-card-page .photo {
-  width: 96px;
-  height: 96px;
+  width: clamp(64px, 14vh, 96px);
+  height: clamp(64px, 14vh, 96px);
   border-radius: 50%;
   border: 4px solid var(--cream);
   background: var(--line) center / cover no-repeat;
@@ -469,40 +476,46 @@ button {
 }
 
 .public-card-page .cbody {
-  padding: 14px 24px 28px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(8px, 2vh, 14px) 24px clamp(12px, 3vh, 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .public-card-page .name {
-  font-size: 22px;
+  font-size: clamp(17px, 4.2vh, 22px);
   font-weight: 700;
-  line-height: 1.18;
+  line-height: 1.15;
   margin: 2px 0 4px;
 }
 
 .public-card-page .role {
-  font-size: 15px;
+  font-size: clamp(12px, 2.6vh, 15px);
   color: var(--color-primario, var(--forest));
   font-weight: 600;
   margin: 0;
 }
 
 .public-card-page .company {
-  font-size: 13px;
+  font-size: clamp(11px, 2.2vh, 13px);
   color: var(--muted);
-  margin: 2px 0 16px;
+  margin: 2px 0 clamp(8px, 2vh, 16px);
 }
 
 .public-card-page .divider {
   border: none;
   border-top: 1px solid var(--line);
-  margin: 0 0 14px;
+  margin: 0 0 clamp(6px, 1.4vh, 14px);
 }
 
 .public-card-page .field {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 9px 0;
+  padding: clamp(5px, 1.4vh, 9px) 0;
   text-decoration: none;
   color: var(--ink);
 }
@@ -512,15 +525,15 @@ button {
 }
 
 .public-card-page .field .icon {
-  width: 36px;
-  height: 36px;
+  width: clamp(28px, 6vh, 36px);
+  height: clamp(28px, 6vh, 36px);
   border-radius: 50%;
   background: var(--color-primario, var(--forest));
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: clamp(12px, 2.6vh, 15px);
   flex-shrink: 0;
 }
 
@@ -536,7 +549,7 @@ button {
 
 .public-card-page .field-text {
   min-width: 0;
-  font-size: 13px;
+  font-size: clamp(12px, 2.4vh, 13px);
   font-weight: 600;
   overflow-wrap: anywhere;
 }
@@ -551,14 +564,15 @@ button {
 }
 
 .public-card-page .save-btn {
+  flex-shrink: 0;
   width: 100%;
-  margin-top: 18px;
-  padding: 14px;
+  margin-top: clamp(8px, 2vh, 18px);
+  padding: clamp(10px, 2.2vh, 14px);
   border: none;
   border-radius: 12px;
   background: var(--color-primario, var(--forest));
   color: #fff;
-  font-size: 15px;
+  font-size: clamp(13px, 2.8vh, 15px);
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -573,92 +587,4 @@ button {
 
 .public-card-page .save-btn:active {
   transform: translateY(0);
-}
-
-/* ==========================================================
-   CELULARES
-   ========================================================== */
-
-@media (max-width: 420px) {
-  .qr-preview-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .public-card-page {
-    padding: 14px 10px;
-  }
-
-  .public-card-page .card {
-    max-width: 370px;
-  }
-
-  .public-card-page .banner,
-  .public-card-page .banner.has-logo {
-    padding: 18px 16px;
-  }
-
-  .public-card-page .banner .logo {
-    max-height: 110px;
-  }
-
-  .public-card-page .photo-wrap {
-    margin: -44px 20px 0;
-  }
-
-  .public-card-page .photo {
-    width: 92px;
-    height: 92px;
-  }
-
-  .public-card-page .cbody {
-    padding: 13px 20px 24px;
-  }
-
-  .public-card-page .name {
-    font-size: 21px;
-  }
-
-  .public-card-page .role {
-    font-size: 14px;
-  }
-
-  .public-card-page .company {
-    font-size: 13px;
-  }
-}
-
-/* ==========================================================
-   CELULARES MUY PEQUEÑOS
-   ========================================================== */
-
-@media (max-width: 340px) {
-  .public-card-page {
-    padding: 8px 6px;
-  }
-
-  .public-card-page .banner,
-  .public-card-page .banner.has-logo {
-    padding: 16px 14px;
-  }
-
-  .public-card-page .banner .logo {
-    max-height: 96px;
-  }
-
-  .public-card-page .photo-wrap {
-    margin: -40px 18px 0;
-  }
-
-  .public-card-page .photo {
-    width: 86px;
-    height: 86px;
-  }
-
-  .public-card-page .cbody {
-    padding: 12px 18px 22px;
-  }
-
-  .public-card-page .name {
-    font-size: 19px;
-  }
 }
