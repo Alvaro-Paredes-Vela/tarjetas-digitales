@@ -1,9 +1,10 @@
 :root {
   --cream: #f7f3e8;
-  --forest: #2c5f3d;
-  --forest-dark: #1e4029;
-  --wheat: #d9a441;
-  --ink: #22281f;
+  --forest: #234f36;
+  --forest-dark: #16332322;
+  --forest-dark: #163a26;
+  --wheat: #c8963a;
+  --ink: #20261e;
   --muted: #6b7263;
   --line: #e1d9c3;
 }
@@ -447,30 +448,36 @@ button {
   border-radius: 22px;
   overflow: hidden;
   box-shadow:
-    0 24px 60px rgba(30, 64, 41, 0.22),
-    0 2px 8px rgba(30, 64, 41, 0.08);
-  border: 1px solid rgba(30, 64, 41, 0.08);
+    0 24px 60px rgba(20, 40, 28, 0.28),
+    0 2px 8px rgba(20, 40, 28, 0.1);
+  border: none;
 }
 
+/* Banner: la imagen del logo ocupa TODA la sección de arriba,
+   sin recuadro blanco ni bordes — el logo "flota" a bordes
+   perdidos usando el color de marca de fondo. Se ve bien tanto
+   en claro como en modo oscuro del sistema porque no depende
+   de un fondo blanco fijo. */
 .public-card-page .banner {
   flex-shrink: 0;
   background: var(--color-primario, var(--forest-dark));
-  padding: clamp(10px, 2.5vh, 20px) 22px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .public-card-page .banner.has-logo {
-  background: #ffffff;
-  padding: clamp(4px, 1vh, 8px) 10px;
+  background: var(--color-primario, var(--forest-dark));
+  padding: 0;
 }
 
 .public-card-page .banner .logo {
   width: 100%;
-  height: auto;
-  max-height: clamp(70px, 16vh, 160px);
-  object-fit: contain;
+  height: clamp(110px, 22vh, 190px);
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -479,6 +486,7 @@ button {
   font-size: 18px;
   font-weight: 700;
   margin: 0;
+  padding: clamp(20px, 5vh, 40px) 22px;
   text-align: center;
 }
 
@@ -516,6 +524,7 @@ button {
   letter-spacing: -0.01em;
   line-height: 1.15;
   margin: 2px 0 4px;
+  color: var(--ink);
 }
 
 .public-card-page .role {
@@ -553,7 +562,7 @@ button {
 }
 
 .public-card-page .field:hover {
-  background: rgba(44, 95, 61, 0.05);
+  background: rgba(35, 79, 54, 0.06);
   transform: translateX(1px);
 }
 
@@ -568,18 +577,20 @@ button {
   justify-content: center;
   font-size: clamp(12px, 2.6vh, 15px);
   flex-shrink: 0;
-  box-shadow: 0 3px 8px rgba(30, 64, 41, 0.18);
+  box-shadow: 0 3px 8px rgba(20, 40, 28, 0.22);
 }
 
 .public-card-page .field .icon svg {
   width: 50%;
   height: 50%;
+  display: block;
 }
 
+/* WhatsApp: sin cambios de color/ícono a pedido */
 .public-card-page .field .icon.wa {
   background: #25d366;
   color: #fff;
-  box-shadow: 0 3px 8px rgba(37, 211, 102, 0.28);
+  box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
 }
 
 .public-card-page .field .icon.gold {
@@ -590,7 +601,7 @@ button {
 .public-card-page .field .icon.location {
   background: var(--wheat);
   color: #fff;
-  box-shadow: 0 3px 8px rgba(217, 164, 65, 0.28);
+  box-shadow: 0 3px 8px rgba(200, 150, 58, 0.3);
 }
 
 .public-card-page .field-text {
@@ -598,6 +609,7 @@ button {
   font-size: clamp(12px, 2.4vh, 13.5px);
   font-weight: 600;
   overflow-wrap: anywhere;
+  color: var(--ink);
 }
 
 .public-card-page .field-text small {
@@ -623,7 +635,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(30, 64, 41, 0.2);
+  box-shadow: 0 8px 18px rgba(20, 40, 28, 0.24);
   transition:
     transform 0.15s ease,
     filter 0.15s ease,
@@ -633,10 +645,10 @@ button {
 .public-card-page .save-btn:hover {
   filter: brightness(0.94);
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(30, 64, 41, 0.26);
+  box-shadow: 0 10px 22px rgba(20, 40, 28, 0.3);
 }
 
 .public-card-page .save-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(30, 64, 41, 0.2);
+  box-shadow: 0 4px 10px rgba(20, 40, 28, 0.24);
 }
