@@ -1,9 +1,8 @@
 :root {
-  --cream: #f7f3e8;
-  --forest: #234f36;
-  --forest-dark: #16332322;
+  --cream: #f8f5ea;
+  --forest: #28663f;
   --forest-dark: #163a26;
-  --wheat: #c8963a;
+  --wheat: #dda62a;
   --ink: #20261e;
   --muted: #6b7263;
   --line: #e1d9c3;
@@ -20,7 +19,7 @@ body {
     system-ui,
     -apple-system,
     sans-serif;
-  background: linear-gradient(180deg, #efe7d2 0%, #e4d9bc 100%);
+  background: linear-gradient(135deg, #f3eedc 0%, #e7e0c8 100%);
   color: var(--ink);
 }
 
@@ -448,16 +447,12 @@ button {
   border-radius: 22px;
   overflow: hidden;
   box-shadow:
-    0 24px 60px rgba(20, 40, 28, 0.28),
-    0 2px 8px rgba(20, 40, 28, 0.1);
+    0 20px 50px rgba(20, 40, 28, 0.2),
+    0 2px 8px rgba(20, 40, 28, 0.08);
   border: none;
 }
 
-/* Banner: la imagen del logo ocupa TODA la sección de arriba,
-   sin recuadro blanco ni bordes — el logo "flota" a bordes
-   perdidos usando el color de marca de fondo. Se ve bien tanto
-   en claro como en modo oscuro del sistema porque no depende
-   de un fondo blanco fijo. */
+/* Banner */
 .public-card-page .banner {
   flex-shrink: 0;
   background: var(--color-primario, var(--forest-dark));
@@ -586,7 +581,7 @@ button {
   display: block;
 }
 
-/* WhatsApp: sin cambios de color/ícono a pedido */
+/* WhatsApp */
 .public-card-page .field .icon.wa {
   background: #25d366;
   color: #fff;
@@ -601,7 +596,7 @@ button {
 .public-card-page .field .icon.location {
   background: var(--wheat);
   color: #fff;
-  box-shadow: 0 3px 8px rgba(200, 150, 58, 0.3);
+  box-shadow: 0 3px 8px rgba(221, 166, 42, 0.28);
 }
 
 .public-card-page .field-text {
@@ -635,7 +630,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(20, 40, 28, 0.24);
+  box-shadow: 0 8px 18px rgba(20, 40, 28, 0.2);
   transition:
     transform 0.15s ease,
     filter 0.15s ease,
@@ -645,10 +640,10 @@ button {
 .public-card-page .save-btn:hover {
   filter: brightness(0.94);
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(20, 40, 28, 0.3);
+  box-shadow: 0 10px 22px rgba(20, 40, 28, 0.26);
 }
 
 .public-card-page .save-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(20, 40, 28, 0.24);
+  box-shadow: 0 4px 10px rgba(20, 40, 28, 0.2);
 }
