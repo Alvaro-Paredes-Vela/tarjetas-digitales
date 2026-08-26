@@ -3,6 +3,34 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import { descargarVCard } from "../lib/vcard";
 
+function MailIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2.1.2L12 12.5l7.9-6.3H4.1zM20 8.1l-7.4 5.9a1 1 0 0 1-1.2 0L4 8.1V18h16V8.1z" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" />
+    </svg>
+  );
+}
+
 function WhatsAppIcon() {
   return (
     <svg
@@ -118,7 +146,9 @@ export default function PublicCard() {
 
           {persona.correo && (
             <a className="field" href={`mailto:${persona.correo}`}>
-              <span className="icon">✉</span>
+              <span className="icon">
+                <MailIcon />
+              </span>
               <span className="field-text">
                 <small>Correo</small>
                 {persona.correo}
@@ -154,13 +184,16 @@ export default function PublicCard() {
                 <WhatsAppIcon />
               </span>
               <span className="field-text">
-                <small>WhatsApp</small>Agrégame en WhatsApp
+                <small>WhatsApp</small>WhatsApp
               </span>
             </a>
           )}
+
           {persona.celular && (
             <a className="field" href={`tel:${persona.celular}`}>
-              <span className="icon gold">📞</span>
+              <span className="icon gold">
+                <PhoneIcon />
+              </span>
               <span className="field-text">
                 <small>Móvil</small>
                 {persona.celular}

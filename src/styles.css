@@ -429,7 +429,7 @@ button {
 
 .public-card-page {
   height: 100dvh;
-  height: 100svh; /* fallback progresivo, se sobrescribe si el navegador lo soporta */
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -444,10 +444,12 @@ button {
   display: flex;
   flex-direction: column;
   background: var(--cream);
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(30, 64, 41, 0.25);
-  border: 1px solid var(--line);
+  box-shadow:
+    0 24px 60px rgba(30, 64, 41, 0.22),
+    0 2px 8px rgba(30, 64, 41, 0.08);
+  border: 1px solid rgba(30, 64, 41, 0.08);
 }
 
 .public-card-page .banner {
@@ -491,9 +493,11 @@ button {
   width: clamp(64px, 14vh, 96px);
   height: clamp(64px, 14vh, 96px);
   border-radius: 50%;
-  border: 2px solid var(--cream);
+  border: 3px solid var(--cream);
   background: var(--line) center / cover no-repeat;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(30, 64, 41, 0.06);
 }
 
 .public-card-page .cbody {
@@ -509,6 +513,7 @@ button {
 .public-card-page .name {
   font-size: clamp(17px, 4.2vh, 22px);
   font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.15;
   margin: 2px 0 4px;
 }
@@ -523,6 +528,7 @@ button {
 .public-card-page .company {
   font-size: clamp(11px, 2.2vh, 13px);
   color: var(--muted);
+  letter-spacing: 0.01em;
   margin: 2px 0 clamp(8px, 2vh, 16px);
 }
 
@@ -535,19 +541,25 @@ button {
 .public-card-page .field {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: clamp(5px, 1.4vh, 9px) 0;
+  gap: 13px;
+  padding: clamp(6px, 1.5vh, 10px) 8px;
+  margin: 0 -8px;
+  border-radius: 10px;
   text-decoration: none;
   color: var(--ink);
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
 .public-card-page .field:hover {
-  opacity: 0.85;
+  background: rgba(44, 95, 61, 0.05);
+  transform: translateX(1px);
 }
 
 .public-card-page .field .icon {
-  width: clamp(28px, 6vh, 36px);
-  height: clamp(28px, 6vh, 36px);
+  width: clamp(30px, 6.4vh, 38px);
+  height: clamp(30px, 6.4vh, 38px);
   border-radius: 50%;
   background: var(--color-primario, var(--forest));
   color: #fff;
@@ -556,16 +568,18 @@ button {
   justify-content: center;
   font-size: clamp(12px, 2.6vh, 15px);
   flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(30, 64, 41, 0.18);
 }
 
 .public-card-page .field .icon svg {
-  width: 55%;
-  height: 55%;
+  width: 50%;
+  height: 50%;
 }
 
 .public-card-page .field .icon.wa {
   background: #25d366;
   color: #fff;
+  box-shadow: 0 3px 8px rgba(37, 211, 102, 0.28);
 }
 
 .public-card-page .field .icon.gold {
@@ -576,11 +590,12 @@ button {
 .public-card-page .field .icon.location {
   background: var(--wheat);
   color: #fff;
+  box-shadow: 0 3px 8px rgba(217, 164, 65, 0.28);
 }
 
 .public-card-page .field-text {
   min-width: 0;
-  font-size: clamp(12px, 2.4vh, 13px);
+  font-size: clamp(12px, 2.4vh, 13.5px);
   font-weight: 600;
   overflow-wrap: anywhere;
 }
@@ -589,7 +604,8 @@ button {
   display: block;
   color: var(--muted);
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 2px;
 }
@@ -597,25 +613,30 @@ button {
 .public-card-page .save-btn {
   flex-shrink: 0;
   width: 100%;
-  margin-top: clamp(8px, 2vh, 18px);
-  padding: clamp(10px, 2.2vh, 14px);
+  margin-top: clamp(10px, 2.4vh, 20px);
+  padding: clamp(11px, 2.4vh, 15px);
   border: none;
   border-radius: 12px;
   background: var(--color-primario, var(--forest));
   color: #fff;
   font-size: clamp(13px, 2.8vh, 15px);
   font-weight: 700;
+  letter-spacing: 0.01em;
   cursor: pointer;
+  box-shadow: 0 8px 18px rgba(30, 64, 41, 0.2);
   transition:
     transform 0.15s ease,
-    filter 0.15s ease;
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .public-card-page .save-btn:hover {
-  filter: brightness(0.92);
+  filter: brightness(0.94);
   transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(30, 64, 41, 0.26);
 }
 
 .public-card-page .save-btn:active {
   transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(30, 64, 41, 0.2);
 }
