@@ -158,3 +158,19 @@ create policy "empresas_admin_update"
       where ua.user_id = auth.uid() and ua.empresa_id = empresas.id
     )
   );
+
+
+-- =========================================================
+-- Migración: ubicación de oficina por empresa
+-- Ejecutar en el SQL Editor de Supabase
+-- =========================================================
+
+alter table empresas add column if not exists ubicacion_url text;
+alter table empresas add column if not exists ubicacion_texto text;
+
+-- Ejemplo para cargar el dato de Full Agro Millenium S.R.L.
+-- (podés hacerlo también desde el nuevo formulario en el Dashboard)
+-- update empresas
+-- set ubicacion_url = 'https://maps.app.goo.gl/KEDHnpXuXWLDijA17',
+--     ubicacion_texto = 'Zona Este, Santa Cruz, Bolivia'
+-- where slug = 'fullagro';

@@ -15,6 +15,9 @@ export default function Dashboard() {
   const [personas, setPersonas] = useState([]);
   const [editando, setEditando] = useState(null); // null = cerrado, {} = nueva, {...} = editar
   const [cargando, setCargando] = useState(true);
+  const [ubicacionUrl, setUbicacionUrl] = useState("");
+  const [ubicacionTexto, setUbicacionTexto] = useState("");
+  const [guardandoUbicacion, setGuardandoUbicacion] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +45,8 @@ export default function Dashboard() {
     }
 
     setEmpresa(admin.empresas);
+    setUbicacionUrl(admin.empresas.ubicacion_url || "");
+    setUbicacionTexto(admin.empresas.ubicacion_texto || "");
 
     const { data: listaPersonas } = await supabase
       .from("personas")
@@ -86,6 +91,27 @@ export default function Dashboard() {
 
     if (errUpdate) {
       alert("No se pudo guardar el logo: " + errUpdate.message);
+      return;
+    }
+
+    cargarTodo();
+  }
+
+  async function guardarUbicacion() {
+    setGuardandoUbicacion(true);
+
+    const { error } = await supabase
+      .from("empresas")
+      .update({
+        ubicacion_url: ubicacionUrl.trim() || null,
+        ubicacion_texto: ubicacionTexto.trim() || null,
+      })
+      .eq("id", empresa.id);
+
+    setGuardandoUbicacion(false);
+
+    if (error) {
+      alert("No se pudo guardar la ubicación: " + error.message);
       return;
     }
 
@@ -139,6 +165,46 @@ export default function Dashboard() {
           Salir
         </button>
       </header>
+
+      <div className="dashboard-header ubicacion-edit">
+        <div style={{ width: "100%" }}>
+          <h2 className="dashboard-subtitle">Ubicación de la oficina</h2>
+          <p className="muted">
+            Se muestra como un campo con pin en todas las tarjetas de esta
+            empresa.
+          </p>
+
+          <div className="campo">
+            <label>Texto a mostrar (ej. "Zona Este, Santa Cruz")</label>
+            <input
+              type="text"
+              value={ubicacionTexto}
+              onChange={(e) => setUbicacionTexto(e.target.value)}
+              placeholder="Zona Este, Santa Cruz, Bolivia"
+            />
+          </div>
+
+          <div className="campo">
+            <label>Link de Google Maps (compartir → copiar enlace)</label>
+            <input
+              type="text"
+              value={ubicacionUrl}
+              onChange={(e) => setUbicacionUrl(e.target.value)}
+              placeholder="https://maps.app.goo.gl/..."
+            />
+          </div>
+
+          <div className="fila-btn">
+            <button
+              className="btn-primary"
+              onClick={guardarUbicacion}
+              disabled={guardandoUbicacion}
+            >
+              {guardandoUbicacion ? "Guardando..." : "Guardar ubicación"}
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div className="dashboard-toolbar">
         <div>

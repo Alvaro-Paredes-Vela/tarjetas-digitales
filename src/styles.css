@@ -178,6 +178,27 @@ body {
 }
 
 /* ==========================================================
+   UBICACIÓN DE OFICINA (panel admin)
+   ========================================================== */
+
+.ubicacion-edit {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+
+.ubicacion-edit .campo {
+  margin-bottom: 8px;
+}
+
+.ubicacion-edit .fila-btn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* ==========================================================
    LISTA DE PERSONAS
    ========================================================== */
 
@@ -440,13 +461,13 @@ button {
 
 .public-card-page .banner.has-logo {
   background: #ffffff;
-  padding: clamp(10px, 2.5vh, 22px) 20px;
+  padding: clamp(4px, 1vh, 8px) 10px;
 }
 
 .public-card-page .banner .logo {
   width: 100%;
   height: auto;
-  max-height: clamp(50px, 12vh, 130px);
+  max-height: clamp(70px, 16vh, 160px);
   object-fit: contain;
   display: block;
 }
@@ -470,7 +491,7 @@ button {
   width: clamp(64px, 14vh, 96px);
   height: clamp(64px, 14vh, 96px);
   border-radius: 50%;
-  border: 4px solid var(--cream);
+  border: 2px solid var(--cream);
   background: var(--line) center / cover no-repeat;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
@@ -537,6 +558,11 @@ button {
   flex-shrink: 0;
 }
 
+.public-card-page .field .icon svg {
+  width: 55%;
+  height: 55%;
+}
+
 .public-card-page .field .icon.wa {
   background: #25d366;
   color: #fff;
@@ -544,6 +570,11 @@ button {
 
 .public-card-page .field .icon.gold {
   background: var(--color-primario, var(--forest));
+  color: #fff;
+}
+
+.public-card-page .field .icon.location {
+  background: var(--wheat);
   color: #fff;
 }
 
