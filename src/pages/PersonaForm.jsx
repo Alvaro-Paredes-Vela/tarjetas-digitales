@@ -6,10 +6,34 @@ import { buildVCard, descargarVCard } from "../lib/vcard";
 // Tamaño real del canvas (calidad de impresión); se muestra más chico con CSS.
 const QR_RESOLUTION = 800;
 
-function descargarCanvas(canvasRef, nombreArchivo) {
-  const canvas = canvasRef.current?.querySelector("canvas");
-  if (!canvas) return;
-  const url = canvas.toDataURL("image/png", 1.0);
+// Arma una imagen nueva con el QR arriba y el nombre debajo, y la descarga.
+function descargarCanvasConNombre(canvasRef, nombre, nombreArchivo) {
+  const qrCanvas = canvasRef.current?.querySelector("canvas");
+  if (!qrCanvas) return;
+
+  const franjaTexto = 90; // alto reservado para el nombre, en px del canvas final
+  const out = document.createElement("canvas");
+  out.width = qrCanvas.width;
+  out.height = qrCanvas.height + franjaTexto;
+
+  const ctx = out.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, out.width, out.height);
+  ctx.drawImage(qrCanvas, 0, 0);
+
+  ctx.fillStyle = "#22281f";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  const fontSize = Math.round(out.width * 0.045);
+  ctx.font = `700 ${fontSize}px 'Segoe UI', system-ui, sans-serif`;
+  ctx.fillText(
+    nombre,
+    out.width / 2,
+    qrCanvas.height + franjaTexto / 2,
+    out.width - 40,
+  );
+
+  const url = out.toDataURL("image/png", 1.0);
   const a = document.createElement("a");
   a.href = url;
   a.download = nombreArchivo;
@@ -201,12 +225,14 @@ export default function PersonaForm({ empresa, persona, onClose, onSaved }) {
                   fgColor="#22281f"
                 />
               </div>
+              <p className="qr-nombre">{form.nombre}</p>
               <button
                 type="button"
                 className="btn-ghost"
                 onClick={() =>
-                  descargarCanvas(
+                  descargarCanvasConNombre(
                     qrOfflineRef,
+                    form.nombre,
                     `qr-sin-internet-${slugPreview}.png`,
                   )
                 }
@@ -241,12 +267,14 @@ export default function PersonaForm({ empresa, persona, onClose, onSaved }) {
                       fgColor="#22281f"
                     />
                   </div>
+                  <p className="qr-nombre">{form.nombre}</p>
                   <button
                     type="button"
                     className="btn-ghost"
                     onClick={() =>
-                      descargarCanvas(
+                      descargarCanvasConNombre(
                         qrOnlineRef,
+                        form.nombre,
                         `qr-con-internet-${slugPreview}.png`,
                       )
                     }
